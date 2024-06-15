@@ -16188,6 +16188,7 @@ with pkgs;
 
   kotlin = callPackage ../development/compilers/kotlin { };
   kotlin-native = callPackage ../development/compilers/kotlin/native.nix { };
+  kotlin-native-toolchain-x86 = callPackage ../development/compilers/kotlin/native-toolchain-x86.nix { };
 
   lazarus = callPackage ../development/compilers/fpc/lazarus.nix {
     fpc = fpc;
