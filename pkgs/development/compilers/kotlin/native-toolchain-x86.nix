@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
     }.${arch};
   in
     fetchurl {
-      url = getUrl version getArch;
+      url = getUrl getArch;
       sha256 = getHash getArch;
     };
 
