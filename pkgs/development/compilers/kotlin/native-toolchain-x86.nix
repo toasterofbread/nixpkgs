@@ -10,17 +10,14 @@ stdenv.mkDerivation rec {
 
   src = let
     getArch = {
-      "aarch64-darwin" = "macos-aarch64";
-      "x86_64-darwin" = "macos-x86_64";
       "x86_64-linux" = "linux-x86_64";
     }.${stdenv.system} or (throw "${pname}-${version}: ${stdenv.system} is unsupported.");
 
-    getUrl = version: arch:
-      "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
+    getUrl = arch: {
+      "linux-x86_64" = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";;
+    }.${arch};
 
     getHash = arch: {
-      "macos-aarch64" = "a048397d50fb5a2bd6cc0f89d5a30e0b8ff0373ebff9c1d78ce1f1fb7f185a50";
-      "macos-x86_64" = "a048397d50fb5a2bd6cc0f89d5a30e0b8ff0373ebff9c1d78ce1f1fb7f185a50";
       "linux-x86_64" = "a048397d50fb5a2bd6cc0f89d5a30e0b8ff0373ebff9c1d78ce1f1fb7f185a50";
     }.${arch};
   in
@@ -49,8 +46,8 @@ stdenv.mkDerivation rec {
       backend for the Kotlin compiler and native implementation of the Kotlin
       standard library.
     '';
-    license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [ fabianhjr ];
-    platforms = [ "x86_64-linux" ] ++ lib.platforms.darwin;
+    #license = lib.licenses.asl20;
+    maintainers = with lib.maintainers; [ ];
+    platforms = [ "x86_64-linux" ];
   };
 }
