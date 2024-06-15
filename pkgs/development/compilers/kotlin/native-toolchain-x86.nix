@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
   pname = "kotlin-native-toolchain-x86";
   version = "2.0.0";
   
-  src = "./"
+  src = "./";
   
   fetchurl {
     url = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
