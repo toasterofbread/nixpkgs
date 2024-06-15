@@ -16,11 +16,8 @@ stdenv.mkDerivation rec {
       "x86_64-linux" = "linux-x86_64";
     }.${stdenv.system} or (throw "${pname}-${version}: ${stdenv.system} is unsupported.");
 
-    getName = version: arch:
-      "kotlin-native-prebuilt-${arch}-${version}";
-
     getUrl = version: arch:
-      "https://github.com/JetBrains/kotlin/releases/download/v${version}/${getName version arch}";
+      "https://github.com/JetBrains/kotlin/releases/download/v${version}/kotlin-native-prebuilt-${arch}-${version}";
 
     getHash = arch: {
       "macos-aarch64" = "1v1ld4nxa77vjxiz4jw5h29s8i4ghfbmq0d01r15i75pr46md8r7";
@@ -41,15 +38,14 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    name = ${getName version arch}
-    mkdir -p $out/$name
-    mv * $out/$name
+    mkdir -p $out
+    mv * $out
 
     runHook postInstall
   '';
 
   postFixup = ''
-    wrapProgram $out/${getName version arch}/bin/run_konan --prefix PATH ":" ${lib.makeBinPath [ jre ]}
+    wrapProgram $out/bin/run_konan --prefix PATH ":" ${lib.makeBinPath [ jre ]}
   '';
 
   meta = {
