@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
     }.${stdenv.system} or (throw "${pname}-${version}: ${stdenv.system} is unsupported.");
 
     getUrl = version: arch:
-      "https://github.com/JetBrains/kotlin/releases/download/v${version}/kotlin-native-prebuilt-${arch}-${version}";
+      "https://github.com/JetBrains/kotlin/releases/download/v${version}/kotlin-native-prebuilt-${arch}-${version}.tar.gz";
 
     getHash = arch: {
       "macos-aarch64" = "1v1ld4nxa77vjxiz4jw5h29s8i4ghfbmq0d01r15i75pr46md8r7";
