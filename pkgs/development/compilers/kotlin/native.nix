@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
 
     getHash = arch: {
       "macos-aarch64" = "3f13d0f6d54dcae7e8a8a011f5f71706d4339fa3246d5235d52a30d8edd39790";
-      "macos-x86_64" = "0";
+      "macos-x86_64" = "23e390aa2fc84a89a1e06b529c9e2c3f7ecd32ef706b25cb7dbf75b8946f8784";
       "linux-x86_64" = "695129d0d90ab03425aada80ca029ddc41bf0763cb9994f30ab22b084357a189";
     }.${arch};
   in
