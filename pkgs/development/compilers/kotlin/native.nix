@@ -20,9 +20,9 @@ stdenv.mkDerivation rec {
       "https://github.com/JetBrains/kotlin/releases/download/v${version}/kotlin-native-prebuilt-${arch}-${version}.tar.gz";
 
     getHash = arch: {
-      "macos-aarch64" = "1v1ld4nxa77vjxiz4jw5h29s8i4ghfbmq0d01r15i75pr46md8r7";
-      "macos-x86_64" = "05ywdhagj3qzjaw5sd94sgjk89dysky7d7lfqpwvc8s35v77rv8f";
-      "linux-x86_64" = "1j2lpl1r7r30dgard6ia29n3qrsr98wb3qwpc80z4jh6k42qn6id";
+      "macos-aarch64" = "3f13d0f6d54dcae7e8a8a011f5f71706d4339fa3246d5235d52a30d8edd39790";
+      "macos-x86_64" = "0";
+      "linux-x86_64" = "695129d0d90ab03425aada80ca029ddc41bf0763cb9994f30ab22b084357a189";
     }.${arch};
   in
     fetchurl {
