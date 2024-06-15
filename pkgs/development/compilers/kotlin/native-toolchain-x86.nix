@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
     }.${stdenv.system} or (throw "${pname}-${version}: ${stdenv.system} is unsupported.");
 
     getUrl = arch: {
-      "linux-x86_64" = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";;
+      "linux-x86_64" = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
     }.${arch};
 
     getHash = arch: {
