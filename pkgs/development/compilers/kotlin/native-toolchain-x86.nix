@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchurl
+, autopatchelfhook
 }:
 
 stdenv.mkDerivation rec {
@@ -27,6 +28,8 @@ stdenv.mkDerivation rec {
       url = getUrl version getArch;
       sha256 = getHash getArch;
     };
+
+  nativeBuildInputs = [ autoPatchelfHook ];
 
   installPhase = ''
     runHook preInstall
