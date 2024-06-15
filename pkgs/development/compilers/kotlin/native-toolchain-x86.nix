@@ -1,8 +1,6 @@
 { lib
 , stdenv
 , fetchurl
-, jre
-, makeWrapper
 }:
 
 stdenv.mkDerivation rec {
@@ -30,11 +28,6 @@ stdenv.mkDerivation rec {
       sha256 = getHash getArch;
     };
 
-  nativeBuildInputs = [
-    jre
-    makeWrapper
-  ];
-
   installPhase = ''
     runHook preInstall
 
@@ -42,10 +35,6 @@ stdenv.mkDerivation rec {
     mv * $out
 
     runHook postInstall
-  '';
-
-  postFixup = ''
-    wrapProgram $out/bin/run_konan --prefix PATH ":" ${lib.makeBinPath [ jre ]}
   '';
 
   meta = {
