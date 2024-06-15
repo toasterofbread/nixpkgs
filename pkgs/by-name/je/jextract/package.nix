@@ -38,13 +38,13 @@ in
 
 stdenv.mkDerivation {
   pname = "jextract";
-  version = "unstable-2024-03-13";
+  version = "unstable-2024-05-28";
 
   src = fetchFromGitHub {
     owner = "openjdk";
     repo = "jextract";
-    rev = "b9ec8879cff052b463237fdd76382b3a5cd8ff2b";
-    hash = "sha256-+4AM8pzXPIO/CS3+Rd/jJf2xDvAo7K7FRyNE8rXvk5U=";
+    rev = "926070f9eea83a0cee916240052bf04d5f2312a6";
+    hash = "sha256-XZq7zbEuDVsuf1GVSxfmRPJNjJwhM0tMQg2g8IBGQyE=";
   };
 
   nativeBuildInputs = [
