@@ -1,7 +1,7 @@
 { lib
 , stdenv
 , fetchurl
-, autopatchelfhook
+, autoPatchelfHook
 }:
 
 stdenv.mkDerivation rec {
