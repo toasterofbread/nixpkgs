@@ -41,7 +41,9 @@ stdenv.mkDerivation rec {
       file=$(basename $s)
       short_file=``${file:33}
       mkdir -p $out/$short_file
-      cp -R $s/$file $out/$short_file
+      echo "LISTING DIR $s"
+      ls $s
+      cp -R $s $out/$short_file
     done
     
     runHook postInstall
