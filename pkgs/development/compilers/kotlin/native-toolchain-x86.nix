@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
     })
     (builtins.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/lldb-4-linux.tar.gz";
-      sha256 = "b1e145c859f44071f66231cfc98c8c16a480cbf47139fcd5dd2df4bf041fdfda";
+      sha256 = "19r56d7h9zcdy0k6rksli1nvdwqxcpa0zy9akcxzxa6pba0ivw8x";
       name = "lldb-4-linux";
     })
     (builtins.fetchTarball {
