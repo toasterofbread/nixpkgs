@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
     })
     (fetchurl {
       url = "https://download.jetbrains.com/kotlin/native/libffi-3.2.1-2-linux-x86-64.tar.gz";
-      sha256 = "aaa";
+      sha256 = "0qp66pvka2mpnzcpg22bjcnlx7cpvircc4ha254xcclw5kvbw2fa";
       name = "libffi-3.2.1-2-linux-x86-64";
     })
   ];
