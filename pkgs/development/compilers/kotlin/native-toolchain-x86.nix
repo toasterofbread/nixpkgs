@@ -36,7 +36,9 @@ stdenv.mkDerivation rec {
   preBuild = ''
     for s in $srcs
     do
-      chmod -R u+w $s
+      if [ $s != "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2" ]; then
+        chmod -R u+w $s
+      fi
     done
   '';
 
