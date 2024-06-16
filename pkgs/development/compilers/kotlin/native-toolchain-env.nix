@@ -23,17 +23,21 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
+    mkdir -p $out/dependencies/
+    
     for toolchain in $buildInputs
     do
-      mkdir -p $out/dependencies/
       cp -asr $toolchain/* $out/dependencies/
     done
     
-    runHook postInstall
-  '';
+    touch $out/dependencies/.extracted
+    for file in $out/dependencies/*; do
+      if [ -d "$file" ]; then
+        echo "$(basename $file)" >> $out/dependencies/.extracted
+      fi
+    done
 
-  shellHook = ''
-    export KONAN_DATA_DIR=``$(pwd)
+    runHook postInstall
   '';
 
   meta = {
