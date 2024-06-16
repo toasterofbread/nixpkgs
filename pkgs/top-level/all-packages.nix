@@ -16188,6 +16188,7 @@ with pkgs;
 
   kotlin = callPackage ../development/compilers/kotlin { };
   kotlin-native = callPackage ../development/compilers/kotlin/native.nix { };
+  kotlin-native-toolchain-env = callPackage ../development/compilers/kotlin/native-toolchain-env.nix { };
   kotlin-native-toolchain-x86 = callPackage ../development/compilers/kotlin/native-toolchain-x86.nix { };
 
   lazarus = callPackage ../development/compilers/fpc/lazarus.nix {
@@ -24991,6 +24992,7 @@ with pkgs;
 
   zeromq4 = callPackage ../development/libraries/zeromq/4.x.nix { };
   zeromq = zeromq4;
+  zeromq-kotlin-native = callPackage ../development/libraries/zeromq/kotlin-native.nix { };
 
   cppzmq = callPackage ../development/libraries/cppzmq { };
 

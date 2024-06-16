@@ -38,10 +38,10 @@ stdenv.mkDerivation rec {
     
     for s in $srcs
     do
-      file=$(basename $s)
-      short_file=$(echo "$file" | cut -c 34-)
-      mkdir -p $out/$short_file
-      cp -R $s/* $out/$short_file
+      name=$(basename $s)
+      dest_file=$(echo "$name" | cut -c 34-)
+      mkdir -p $out/$dest_file
+      cp -R $s/* $out/$dest_file
     done
     
     runHook postInstall
