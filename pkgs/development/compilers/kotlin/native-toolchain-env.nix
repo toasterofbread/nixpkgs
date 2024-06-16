@@ -23,17 +23,15 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/dependencies/
-    
     for toolchain in $buildInputs
     do
-      cp -asr $toolchain/* $out/dependencies/
+      cp -asr $toolchain/* $out
     done
     
-    touch $out/dependencies/.extracted
-    for file in $out/dependencies/*; do
+    touch $out/.extracted
+    for file in $out/*; do
       if [ -d "$file" ]; then
-        echo "$(basename $file)" >> $out/dependencies/.extracted
+        echo "$(basename $file)" >> $out/.extracted
       fi
     done
 
