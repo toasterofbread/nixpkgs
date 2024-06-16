@@ -38,15 +38,14 @@ stdenv.mkDerivation rec {
     
     for s in $srcs
     do
-      mkdir -p $out/$s
-      cp -R $s $out/$s
+      file=$(basename $s)
+      short_file=``${$file:33}
+      mkdir -p $out/$short_file
+      cp -R $s/$file $out/$short_file
     done
     
     runHook postInstall
   '';
-
-  #installPhase = ''
-  #'';
 
   meta = {
     homepage = "https://kotlinlang.org/";
