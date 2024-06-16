@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
       sha256 = "9d817bbca098a2fa0f1d5a8b9e57674c30d100bb4c6aeceff18d8acc5b9f382c";
       name = "libffi-3.2.1-2-linux-x86-64";
     })
-  ]
+  ];
   
   sourceRoot = pname;
   nativeBuildInputs = [ autoPatchelfHook ];
