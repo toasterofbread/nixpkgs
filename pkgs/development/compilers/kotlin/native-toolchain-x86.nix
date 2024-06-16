@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     })
   ];
   
-  sourceRoot = pname;
+  sourceRoot = "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
   nativeBuildInputs = [ autoPatchelfHook ];
 
   installPhase = ''
