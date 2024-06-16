@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
     })
     (builtins.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/llvm-11.1.0-linux-x64-essentials.tar.gz";
-      sha256 = "e5d8d31282f1eeefff006da74f763ca18ee399782d077ccd92693b51feb17a21";
+      sha256 = "1yr476d4l3wm7ggid6z77bzs4qsis56spvq0ksav8ygd6p5zxh2z";
       name = "llvm-11.1.0-linux-x64-essentials";
     })
     (builtins.fetchTarball {
