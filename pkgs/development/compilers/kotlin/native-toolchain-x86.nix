@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
     for s in $srcs
     do
       file=$(basename $s)
-      short_file=``${$file:33}
+      short_file=``${file:33}
       mkdir -p $out/$short_file
       cp -R $s/$file $out/$short_file
     done
