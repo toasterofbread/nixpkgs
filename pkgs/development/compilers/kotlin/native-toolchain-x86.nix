@@ -1,7 +1,6 @@
 { lib
 , stdenv
 , autoPatchelfHook
-, fetchurl
 }:
 
 stdenv.mkDerivation rec {
@@ -9,25 +8,25 @@ stdenv.mkDerivation rec {
   version = "2.0.0";
   
   srcs = [
-    (fetchurl {
+    (builtin.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
       sha256 = "0922kif8z28yvvzpdh3bwf8i21dym66hxj47q0vrhh7nbynqbii2";
       name = "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2";
     })
-    (fetchurl {
+    (builtin.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/lldb-4-linux.tar.gz";
       sha256 = "19r56d7h9zcdy0k6rksli1nvdwqxcpa0zy9akcxzxa6pba0ivw8x";
       name = "lldb-4-linux";
     })
-    (fetchurl {
+    (builtin.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/llvm-11.1.0-linux-x64-essentials.tar.gz";
       sha256 = "1yr476d4l3wm7ggid6z77bzs4qsis56spvq0ksav8ygd6p5zxh2z";
       name = "llvm-11.1.0-linux-x64-essentials";
     })
-    (fetchurl {
+    (builtin.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/libffi-3.2.1-2-linux-x86-64.tar.gz";
       sha256 = "0qp66pvka2mpnzcpg22bjcnlx7cpvircc4ha254xcclw5kvbw2fl";
-      name = "libffi-3.2.1-2-linux-x86-64-test";
+      name = "libffi-3.2.1-2-linux-x86-64";
     })
   ];
   
@@ -38,7 +37,8 @@ stdenv.mkDerivation rec {
     for s in $srcs
     do
       mkdir -p $out/$s
-      tar -xzf $s -C $out/$s
+      mv $s/* $out/$s
+      #tar -xzf $s -C $out/$s
     done
   '';
 
