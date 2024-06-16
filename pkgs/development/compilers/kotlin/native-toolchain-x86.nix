@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
     (fetchurl {
       url = "https://download.jetbrains.com/kotlin/native/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
       sha256 = "a048397d50fb5a2bd6cc0f89d5a30e0b8ff0373ebff9c1d78ce1f1fb7f185a50";
-      #name = "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2";
+      name = pname;
     })
     (fetchurl {
       url = "https://download.jetbrains.com/kotlin/native/lldb-4-linux.tar.gz";
@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     })
   ];
   
-  sourceRoot = "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2.tar.gz";
+  sourceRoot = pname;
   nativeBuildInputs = [ autoPatchelfHook ];
 
   installPhase = ''
