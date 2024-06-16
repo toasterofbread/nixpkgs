@@ -31,9 +31,9 @@ stdenv.mkDerivation rec {
     done
     
     touch $out/.extracted
-    for file in $out/*; do
-      if [ -d "$file" ]; then
-        echo "$(basename $file)" >> $out/.extracted
+    for dir in $out/*; do
+      if [ -d "$out/$dir" ]; then
+        echo "$(basename $dir)" >> $out/.extracted
       fi
     done
 
