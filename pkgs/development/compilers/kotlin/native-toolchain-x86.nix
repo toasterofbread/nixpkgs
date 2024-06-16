@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     })
     (builtins.fetchTarball {
       url = "https://download.jetbrains.com/kotlin/native/libffi-3.2.1-2-linux-x86-64.tar.gz";
-      sha256 = "9d817bbca098a2fa0f1d5a8b9e57674c30d100bb4c6aeceff18d8acc5b9f382c";
+      sha256 = "0qp66pvka2mpnzcpg22bjcnlx7cpvircc4ha254xcclw5kvbw2fl";
       name = "libffi-3.2.1-2-linux-x86-64";
     })
   ];
