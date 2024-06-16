@@ -23,6 +23,8 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
+    mkdir -p $out
+
     for toolchain in $buildInputs
     do
       cp -asr $toolchain/* $out
