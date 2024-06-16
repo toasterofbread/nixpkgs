@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
   '';
 
   configurePhase = ''
-    export TOOLCHAIN=${kotlin-native-toolchain-env}/dependencies/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2
+    export TOOLCHAIN=${kotlin-native-toolchain-env}/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2
     export CC=$TOOLCHAIN/bin/x86_64-unknown-linux-gnu-gcc
     export CXX=$TOOLCHAIN/bin/x86_64-unknown-linux-gnu-g++
     export CMAKE_INSTALL_PREFIX=$out
