@@ -33,6 +33,13 @@ stdenv.mkDerivation rec {
   sourceRoot = "x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2";
   nativeBuildInputs = [ autoPatchelfHook ];
 
+  preBuild = ''
+    for s in $srcs
+    do
+      chmod -R u+w $s
+    done
+  '';
+
   installPhase = ''
     runHook preInstall
 
