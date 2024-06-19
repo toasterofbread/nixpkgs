@@ -25,8 +25,6 @@ stdenv.mkDerivation rec {
 
   doCheck = false; # fails all the tests (ctest)
 
-  cmakeFlags = lib.optional enableDrafts "-DENABLE_DRAFTS=ON";
-
   postPatch = ''
     substituteInPlace CMakeLists.txt \
       --replace '$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \
@@ -40,7 +38,12 @@ stdenv.mkDerivation rec {
     export CMAKE_INSTALL_PREFIX=$out
     mkdir build
     cd build
-    cmake ..
+
+    if [ "${lib.boolToString enableDrafts}" = true ]; then
+      cmake .. -DENABLE_DRAFTS=ON
+    else
+      cmake .. -DENABLE_DRAFTS=OFF
+    fi
   '';
 
   meta = with lib; {
