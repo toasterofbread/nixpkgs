@@ -7036,6 +7036,8 @@ with pkgs;
 
   crd2pulumi = callPackage ../development/tools/crd2pulumi { };
 
+  crosstool-ng = callPackage ../development/tools/crosstool-ng { };
+
   create-cycle-app = nodePackages.create-cycle-app;
 
   createrepo_c = callPackage ../tools/package-management/createrepo_c { };
@@ -16190,6 +16192,8 @@ with pkgs;
   kotlin-native = callPackage ../development/compilers/kotlin/native.nix { };
   kotlin-native-toolchain-env = callPackage ../development/compilers/kotlin/native-toolchain-env.nix { };
   kotlin-native-toolchain-x86 = callPackage ../development/compilers/kotlin/native-toolchain-x86.nix { };
+  kotlin-native-gcc-x86 = callPackage ../development/compilers/kotlin/native-gcc-x86.nix { };
+  kotlin-native-llvm-x86 = callPackage ../development/compilers/kotlin/native-llvm-x86.nix { };
 
   lazarus = callPackage ../development/compilers/fpc/lazarus.nix {
     fpc = fpc;

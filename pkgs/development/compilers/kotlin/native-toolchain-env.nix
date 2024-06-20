@@ -8,11 +8,11 @@
 stdenv.mkDerivation rec {
   pname = "kotlin-native-toolchain-env";
   version = "2.0.0";
-  
+
   sourceRoot = ".";
   unpackPhase = "true";
-  
-  buildInputs = 
+
+  buildInputs =
     let
       toolchains = [
         (if x86 then kotlin-native-toolchain-x86 else null)
@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
     do
       cp -asr $toolchain/* $out
     done
-    
+
     touch $out/.extracted
     for file in $out/*; do
       if [ -d "$file" ]; then

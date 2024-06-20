@@ -1,0 +1,23 @@
+diff --git a/llvm/include/llvm/Support/Signals.h b/llvm/include/llvm/Support/Signals.h
+index e0a18e72f..c66ea8b33 100644
+--- a/llvm/include/llvm/Support/Signals.h
++++ b/llvm/include/llvm/Support/Signals.h
+@@ -15,6 +15,7 @@
+ #define LLVM_SUPPORT_SIGNALS_H
+
+ #include <string>
++#include <cstdint>
+
+ namespace llvm {
+ class StringRef;
+diff --git a/llvm/utils/benchmark/src/benchmark_register.h b/llvm/utils/benchmark/src/benchmark_register.h
+index 0705e219f..6001fb8e0 100644
+--- a/llvm/utils/benchmark/src/benchmark_register.h
++++ b/llvm/utils/benchmark/src/benchmark_register.h
+@@ -2,6 +2,7 @@
+ #define BENCHMARK_REGISTER_H
+
+ #include <vector>
++#include <limits>
+
+ #include "check.h"
