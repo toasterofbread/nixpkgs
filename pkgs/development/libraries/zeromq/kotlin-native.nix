@@ -5,7 +5,7 @@
 , asciidoc
 , pkg-config
 , libsodium
-, kotlin-native-toolchain-env
+, kotlin-native-toolchain-x86
 , enableDrafts ? false
 }:
 
@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-q2h5y0Asad+fGB9haO4Vg7a1ffO2JSb7czzlhmT3VmI=";
   };
 
-  nativeBuildInputs = [ cmake asciidoc pkg-config kotlin-native-toolchain-env ];
+  nativeBuildInputs = [ cmake asciidoc pkg-config kotlin-native-toolchain-x86 ];
   buildInputs = [ libsodium ];
 
   doCheck = false; # fails all the tests (ctest)
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   '';
 
   configurePhase = ''
-    export TOOLCHAIN=${kotlin-native-toolchain-env}/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2
+    export TOOLCHAIN=${kotlin-native-toolchain-x86}/x86_64-unknown-linux-gnu-gcc-8.3.0-glibc-2.19-kernel-4.9-2
     export CC=$TOOLCHAIN/bin/x86_64-unknown-linux-gnu-gcc
     export CXX=$TOOLCHAIN/bin/x86_64-unknown-linux-gnu-g++
     export CMAKE_INSTALL_PREFIX=$out
