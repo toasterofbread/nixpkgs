@@ -2,6 +2,7 @@
 
 declare -a autoPatchelfLibs
 declare -a extraAutoPatchelfLibs
+declare -a autoPatchelfExcludePaths
 
 gatherLibraries() {
     autoPatchelfLibs+=("$1/lib")
@@ -38,6 +39,9 @@ addAutoPatchelfSearchPath() {
         )
 }
 
+addAutoPatchelfExcludePath() {
+    autoPatchelfExcludePaths+=("${@}")
+}
 
 autoPatchelf() {
     local norecurse=
@@ -81,6 +85,7 @@ autoPatchelf() {
         ${norecurse:+--no-recurse}                                      \
         --ignore-missing "${ignoreMissingDepsArray[@]}"                 \
         --paths "$@"                                                    \
+        --ignore-paths "${autoPatchelfExcludePaths[@]}"                 \
         --libs "${autoPatchelfLibs[@]}"                                 \
                "${extraAutoPatchelfLibs[@]}"                            \
         --runtime-dependencies "${runtimeDependenciesArray[@]/%//lib}"  \

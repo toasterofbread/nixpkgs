@@ -258,6 +258,7 @@ def auto_patchelf_file(path: Path, runtime_deps: list[Path], append_rpaths: List
 
 def auto_patchelf(
         paths_to_patch: List[Path],
+        paths_to_ignore: List[Path],
         lib_dirs: List[Path],
         runtime_deps: List[Path],
         recursive: bool = True,
@@ -276,6 +277,15 @@ def auto_patchelf(
     dependencies = []
     for path in chain.from_iterable(glob(p, '*', recursive) for p in paths_to_patch):
         if not path.is_symlink() and path.is_file():
+            ignored = False
+            for ignore_path in paths_to_ignore or []:
+                if ignore_path in path.parents:
+                    ignored = True
+                    break
+
+            if ignored:
+                continue
+
             dependencies += auto_patchelf_file(path, runtime_deps, append_rpaths, extra_args)
 
     missing = [dep for dep in dependencies if not dep.found]
@@ -320,6 +330,9 @@ def main() -> None:
              " Single files and directories are accepted."
              " Directories are traversed recursively by default.")
     parser.add_argument(
+        "--ignore-paths", nargs="*", type=Path,
+        help="Paths whose content will be ignored.")
+    parser.add_argument(
         "--libs", nargs="*", type=Path,
         help="Paths where libraries are searched for."
              " Single files and directories are accepted."
@@ -350,6 +363,7 @@ def main() -> None:
 
     auto_patchelf(
         args.paths,
+        args.ignore_paths,
         args.libs,
         args.runtime_dependencies,
         args.recursive,
