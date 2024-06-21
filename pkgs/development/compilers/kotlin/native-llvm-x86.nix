@@ -1,6 +1,5 @@
 { lib
 , stdenv
-, fetchFromGitHub
 , fetchurl
 , autoPatchelfHook
 , python3

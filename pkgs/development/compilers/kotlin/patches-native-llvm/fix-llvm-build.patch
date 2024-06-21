@@ -1,3 +1,39 @@
+diff --git a/clang/lib/Basic/Version.cpp b/clang/lib/Basic/Version.cpp
+index 286107cab..5d6fd62ad 100644
+--- a/clang/lib/Basic/Version.cpp
++++ b/clang/lib/Basic/Version.cpp
+@@ -24,6 +24,7 @@
+ namespace clang {
+
+ std::string getClangRepositoryPath() {
++  return "https://github.com/llvm/llvm-project";
+ #if defined(CLANG_REPOSITORY_STRING)
+   return CLANG_REPOSITORY_STRING;
+ #else
+@@ -36,6 +37,7 @@ std::string getClangRepositoryPath() {
+ }
+
+ std::string getLLVMRepositoryPath() {
++  return "https://github.com/llvm/llvm-project";
+ #ifdef LLVM_REPOSITORY
+   return LLVM_REPOSITORY;
+ #else
+@@ -44,6 +46,7 @@ std::string getLLVMRepositoryPath() {
+ }
+
+ std::string getClangRevision() {
++  return "1fdec59bffc11ae37eb51a1b9869f0696bfd5312";
+ #ifdef CLANG_REVISION
+   return CLANG_REVISION;
+ #else
+@@ -52,6 +55,7 @@ std::string getClangRevision() {
+ }
+
+ std::string getLLVMRevision() {
++  return "1fdec59bffc11ae37eb51a1b9869f0696bfd5312";
+ #ifdef LLVM_REVISION
+   return LLVM_REVISION;
+ #else
 diff --git a/llvm/include/llvm/Support/Signals.h b/llvm/include/llvm/Support/Signals.h
 index e0a18e72f..c66ea8b33 100644
 --- a/llvm/include/llvm/Support/Signals.h
