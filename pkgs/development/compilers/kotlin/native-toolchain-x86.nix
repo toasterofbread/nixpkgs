@@ -32,6 +32,10 @@ stdenv.mkDerivation rec {
     kotlin-native-llvm-x86
   ];
 
+  preBuild = ''
+    addAutoPatchelfExcludePath $out/llvm-11.1.0-linux-x64-essentials/bin
+  '';
+
   installPhase = ''
     mkdir -p $out
 
