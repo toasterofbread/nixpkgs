@@ -11,7 +11,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "kotlin-native-llvm-x86";
+  pname = "kotlin-native-llvm";
   version = "2.0.0";
 
   srcs = [
@@ -48,7 +48,9 @@ stdenv.mkDerivation rec {
     export CC=${gcc12}/bin/gcc
     export CXX=${gcc12}/bin/g++
 
-    TOP_DIR=$(pwd)
+    ENABLE_PROJECTS="clang;lld"
+    INSTALL_PREFIX=$(pwd)/INSTALL
+    SOURCE_DIR=$(pwd)/llvm
 
     mkdir build
     pushd build
@@ -56,6 +58,8 @@ stdenv.mkDerivation rec {
     cmake \
       -G Ninja \
       -DCMAKE_BUILD_TYPE=Release \
+      -DCLANG_LINKS_TO_CREATE=clang++ \
+      -DLLD_SYMLINKS_TO_CREATE="ld.lld;wasm-ld" \
       -DLLVM_ENABLE_ASSERTIONS=OFF \
       -DLLVM_ENABLE_TERMINFO=OFF \
       -DLLVM_INCLUDE_GO_TESTS=OFF \
@@ -66,20 +70,30 @@ stdenv.mkDerivation rec {
       -DLLVM_ENABLE_IDE=OFF \
       -DLLVM_BUILD_UTILS=ON \
       -DLLVM_INSTALL_UTILS=ON \
-      -DCMAKE_INSTALL_PREFIX=$TOP_DIR/INSTALL \
+      -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX \
       -DLLVM_TARGETS_TO_BUILD=Native \
-      -DLLVM_ENABLE_PROJECTS=clang \
+      -DLLVM_ENABLE_PROJECTS=$ENABLE_PROJECTS \
       -DLLVM_BUILD_LLVM_DYLIB=OFF \
       -DLLVM_LINK_LLVM_DYLIB=OFF \
-      $TOP_DIR/llvm
+      $SOURCE_DIR
 
     ninja install-distribution install
   '';
 
   installPhase = ''
     mkdir -p $out
-    cp -rT /build/llvm-11.1.0-linux-x64-essentials/lib $out/lib
-    cp -rT /build/llvm-project-release-11.x/INSTALL/bin $out/bin
+
+    PREBUILT=/build/llvm-11.1.0-linux-x64-essentials/
+    cp -rT $PREBUILT/lib $out/lib
+
+    mkdir -p $out/bin
+
+    for file in /build/llvm-project-release-11.x/INSTALL/bin/*
+    do
+      if [ -f "$file" ] && [ -f "$PREBUILT/bin/$(basename "$file")" ]; then
+        cp "$file" $out/bin
+      fi
+    done
   '';
 
   meta = {

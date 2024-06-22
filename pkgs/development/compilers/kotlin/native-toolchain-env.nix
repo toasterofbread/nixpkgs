@@ -1,8 +1,9 @@
 { lib
 , stdenv
 , autoPatchelfHook
-, kotlin-native-toolchain-x86
-, x86 ? true
+, kotlin-native-toolchain
+, x86_64 ? true
+, aarch64 ? true
 }:
 
 stdenv.mkDerivation rec {
@@ -12,13 +13,9 @@ stdenv.mkDerivation rec {
   sourceRoot = ".";
   unpackPhase = "true";
 
-  buildInputs =
-    let
-      toolchains = [
-        (if x86 then kotlin-native-toolchain-x86 else null)
-      ];
-    in
-      builtins.filter (x: x != null) toolchains;
+  buildInputs = [
+    (kotlin-native-toolchain.override { inherit x86_64 aarch64; })
+  ];
 
   installPhase = ''
     runHook preInstall

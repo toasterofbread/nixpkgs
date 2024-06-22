@@ -46,6 +46,7 @@ stdenv.mkDerivation rec {
     cacert
     m4
     autoconf
+    autoPatchelfHook
 
     nix-ld
     (buildFHSUserEnv {

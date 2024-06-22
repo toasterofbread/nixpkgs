@@ -16191,9 +16191,9 @@ with pkgs;
   kotlin = callPackage ../development/compilers/kotlin { };
   kotlin-native = callPackage ../development/compilers/kotlin/native.nix { };
   kotlin-native-toolchain-env = callPackage ../development/compilers/kotlin/native-toolchain-env.nix { };
-  kotlin-native-toolchain-x86 = callPackage ../development/compilers/kotlin/native-toolchain-x86.nix { };
+  kotlin-native-toolchain = callPackage ../development/compilers/kotlin/native-toolchain.nix { };
   kotlin-native-gcc-x86 = callPackage ../development/compilers/kotlin/native-gcc-x86.nix { };
-  kotlin-native-llvm-x86 = callPackage ../development/compilers/kotlin/native-llvm-x86.nix { };
+  kotlin-native-llvm = callPackage ../development/compilers/kotlin/native-llvm.nix { };
 
   lazarus = callPackage ../development/compilers/fpc/lazarus.nix {
     fpc = fpc;
