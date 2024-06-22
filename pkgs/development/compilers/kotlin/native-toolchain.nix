@@ -28,6 +28,13 @@ stdenv.mkDerivation rec {
           name = "aarch64-unknown-linux-gnu-gcc-8.3.0-glibc-2.25-kernel-4.9-2";
         })
       else null)
+      (if aarch64 then
+        (builtins.fetchTarball {
+          url = "https://download.jetbrains.com/kotlin/native/qemu-aarch64-static-5.1.0-linux-2.tar.gz";
+          sha256 = "0phc6gm1np80ncqnnlpcac18170ggqld1fjzx4pnhyv8j5rb7b38";
+          name = "qemu-aarch64-static-5.1.0-linux-2";
+        })
+      else null)
     ];
   in
     (builtins.filter (x: x != null) deps) ++ [
