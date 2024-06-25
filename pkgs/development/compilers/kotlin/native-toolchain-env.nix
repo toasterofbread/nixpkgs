@@ -4,6 +4,7 @@
 , kotlin-native-toolchain
 , x86_64 ? true
 , aarch64 ? true
+, msys2 ? true
 }:
 
 stdenv.mkDerivation rec {
@@ -14,7 +15,7 @@ stdenv.mkDerivation rec {
   unpackPhase = "true";
 
   buildInputs = [
-    (kotlin-native-toolchain.override { inherit x86_64 aarch64; })
+    (kotlin-native-toolchain.override { inherit x86_64 aarch64 msys2; })
   ];
 
   installPhase = ''

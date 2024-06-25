@@ -4,6 +4,7 @@
 , kotlin-native-llvm
 , x86_64 ? true
 , aarch64 ? true
+, msys2 ? false
 }:
 
 stdenv.mkDerivation rec {
@@ -33,6 +34,14 @@ stdenv.mkDerivation rec {
           url = "https://download.jetbrains.com/kotlin/native/qemu-aarch64-static-5.1.0-linux-2.tar.gz";
           sha256 = "0phc6gm1np80ncqnnlpcac18170ggqld1fjzx4pnhyv8j5rb7b38";
           name = "qemu-aarch64-static-5.1.0-linux-2";
+        })
+      else null)
+
+      (if msys2 then
+        (builtins.fetchTarball {
+          url = "https://download.jetbrains.com/kotlin/native/msys2-mingw-w64-x86_64-2.tar.gz";
+          sha256 = "043zwpwlcc7nhqafdzcd9zrp4qz93yi0ccrd2rv5dahx74n0k51d";
+          name = "msys2-mingw-w64-x86_64-2";
         })
       else null)
     ];
